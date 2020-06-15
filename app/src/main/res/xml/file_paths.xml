@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <external-path path="Android/data/com.minghao.wzlg/" name="files_root"/>
+    <cache-path
+        name="app_cache"
+        path="."/>
+</paths>
