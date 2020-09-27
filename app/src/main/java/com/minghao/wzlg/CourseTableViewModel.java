@@ -11,7 +11,6 @@ import com.minghao.wzlg.domain.Week;
 public class CourseTableViewModel extends ViewModel {
     // TODO: Implement the ViewModel
 
-
     private Week week;
     private Context context;
     private CourseInfoDialog courseInfoDialog;
@@ -32,7 +31,7 @@ public class CourseTableViewModel extends ViewModel {
         if (courseInfoDialog != null && courseInfoDialog.isShowing()) {
             courseInfoDialog.dismiss();
         }
-        Course course = week.getKeTangs().get(courseId).getCourse();
+        Course course = week.getCourses().get(courseId);
         if (!TextUtils.isEmpty(course.getName())) {
             if (courseInfoDialog == null) {
                 courseInfoDialog = new CourseInfoDialog(context, course);

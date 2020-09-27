@@ -57,7 +57,7 @@ public class CourseTableFragment extends Fragment {
     }
 
     public void setWeenkendVisibility(boolean weekendVisibility) {
-        binding.layoutSaturday.setVisibility(weekendVisibility ? View.VISIBLE : View.GONE);
-        binding.layoutSunday.setVisibility(weekendVisibility ? View.VISIBLE : View.GONE);
+        //binding.layoutSaturday.setVisibility(weekendVisibility ? View.VISIBLE : View.GONE);
+        //binding.layoutSunday.setVisibility(weekendVisibility ? View.VISIBLE : View.GONE);
     }
 }

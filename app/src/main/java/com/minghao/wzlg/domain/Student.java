@@ -1,40 +1,32 @@
 package com.minghao.wzlg.domain;
 
 /**
- * 学生类
+ * 学生对象
+ * @author chunyou
+ * @date 2020-09-02
  */
 public class Student {
+    // 学号
+    private String studentNumber;
+    // 密码
+    private String password;
+    // 姓名
+    private String name;
+    // 班级
+    private String aClass;
+    // 手机号
+    private String phone;
+    // 课程表
+    private CourseTable courseTable;
+    // 成绩
+    private SchoolReport schoolReport;
 
-    private String name;//姓名
-    private String username; //学号
-    private String password; //密码
-    private CourseTable table; //课程表
-    private String phone;//手机号
-    private String username1;//加密后的学号
-    private String password1;//加密后的密码
-
-    public String getUsername1() {
-        return username1;
+    public String getStudentNumber() {
+        return studentNumber;
     }
 
-    public void setUsername1(String username1) {
-        this.username1 = username1;
-    }
-
-    public String getPassword1() {
-        return password1;
-    }
-
-    public void setPassword1(String password1) {
-        this.password1 = password1;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
+    public void setStudentNumber(String studentNumber) {
+        this.studentNumber = studentNumber;
     }
 
     public String getPassword() {
@@ -45,12 +37,20 @@ public class Student {
         this.password = password;
     }
 
-    public CourseTable getTable() {
-        return table;
+    public String getName() {
+        return name;
     }
 
-    public void setTable(CourseTable table) {
-        this.table = table;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getaClass() {
+        return aClass;
+    }
+
+    public void setaClass(String aClass) {
+        this.aClass = aClass;
     }
 
     public String getPhone() {
@@ -61,11 +61,35 @@ public class Student {
         this.phone = phone;
     }
 
-    public String getName() {
-        return name;
+    public CourseTable getCourseTable() {
+        return courseTable;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCourseTable(CourseTable courseTable) {
+        this.courseTable = courseTable;
+    }
+
+    public SchoolReport getSchoolReport() {
+        if (this.schoolReport == null) {
+            this.schoolReport = new SchoolReport();
+        }
+        return schoolReport;
+    }
+
+    public void setSchoolReport(SchoolReport schoolReport) {
+        this.schoolReport = schoolReport;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "studentNumber='" + studentNumber + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", aClass='" + aClass + '\'' +
+                ", phone='" + phone + '\'' +
+                ", courseTable=" + courseTable +
+                ", schoolReport=" + schoolReport +
+                '}';
     }
 }

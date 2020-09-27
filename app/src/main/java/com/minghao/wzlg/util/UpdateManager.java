@@ -1,34 +1,21 @@
 package com.minghao.wzlg.util;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
-import android.text.TextUtils;
 import android.util.Log;
-import android.view.View;
-import android.view.animation.Animation;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.internal.LinkedTreeMap;
-import com.minghao.wzlg.LauncherActivity;
-import com.minghao.wzlg.LoadingDialog;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.minghao.wzlg.MainActivity;
 import com.minghao.wzlg.UpdateDialog;
-import com.minghao.wzlg.databinding.ActivityLauncherBinding;
-import com.minghao.wzlg.domain.File;
-import com.minghao.wzlg.domain.R;
-import com.minghao.wzlg.domain.ResultInfo;
-import com.minghao.wzlg.domain.UpdateInfo;
-import com.minghao.wzlg.domain.Version;
+import com.minghao.wzlg.domain.AppVersionInfo;
+import com.minghao.wzlg.domain.RtnDto;
 
 import java.io.IOException;
+import java.util.LinkedHashMap;
 import java.util.Objects;
 
 import okhttp3.OkHttpClient;
@@ -36,17 +23,18 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class UpdateManager {
-
+    private static String domain = "http://uqubang.com/ruoyi-admin/";
     public static void checkUpdate(final Context context) {
         final Handler handler = new Handler();
         // 获取最新版本
         new Thread(new Runnable() {
             @Override
             public void run() {
-                String url = "http://47.107.156.206/update/version/latest";
+                String url = domain + "app/version/latest";
                 OkHttpClient httpClient = new OkHttpClient();
-                Request request = new Request.Builder()
+                final Request request = new Request.Builder()
                         .url(url)
+                        .get()
                         .build();
                 Response response = null;
                 try {
@@ -55,29 +43,30 @@ public class UpdateManager {
                     e.printStackTrace();
                 }
                 if (response != null) {
-                    // 转换对象
-                    Gson gson = new Gson();
+                    // 解析数据
+                    ObjectMapper mapper = new ObjectMapper();
                     try {
-                        R result = gson.fromJson(Objects.requireNonNull(response.body()).string(), R.class);
-                        if (result.getCode() != 0) {
+                        final RtnDto rtnDto = mapper.readValue(Objects.requireNonNull(response.body()).string(), RtnDto.class);
+                        if (rtnDto.getCode() != 200) {
                             return;
                         }
-                        LinkedTreeMap treeMap = (LinkedTreeMap) result.getData();
-                        if (treeMap == null) {
+                        final Object data = rtnDto.getData();
+                        if (data == null) {
                             return;
                         }
-                        String s = treeMap.toString();
-                        String replace = s.replace(" ", "");
-                        //Log.e("TAG", replace);
-                        String replace1 = replace.replace(":", "");
-                        String replace2 = replace1.replace("/", "");
-                        //{version={id=38.0,versionCode=3.0,versionName=1.0.0-release,modifyContent=我在理工1.0正式版发布,updateDate=2020-05-2822:19:35,forceUpdate=0.0},file={id=23.0,originalName=我在理工.apk,name=/profile/upload/2020/05/28/e764a1f6cc7cf0d1447a145e24d8fc7b.apk,type=application/vnd.android.package-archive,size=3208491.0,url=http://47.107.156.206/profile/upload/2020/05/28/e764a1f6cc7cf0d1447a145e24d8fc7b.apk,md5=9c56ddb07cc7338bec5fda5224b75657}}
-                        final UpdateInfo updateInfo = gson.fromJson(replace2, UpdateInfo.class);
-                        //Log.e("TAG", updateInfo.getVersion().getModifyContent());
-
-                        Version version = updateInfo.getVersion();
+                        LinkedHashMap dataMap = (LinkedHashMap) data;
+                        final AppVersionInfo versionInfo = new AppVersionInfo();
+                        versionInfo.setVersionId((int) dataMap.get("versionId"));
+                        versionInfo.setVersionCode((int) dataMap.get("versionCode"));
+                        versionInfo.setVersionName((String) dataMap.get("versionName"));
+                        versionInfo.setUpdateContent((String) dataMap.get("updateContent"));
+                        versionInfo.setUpdateRequired((int) dataMap.get("updateRequired"));
+                        versionInfo.setDownloadUrl((String) dataMap.get("downloadUrl"));
+                        versionInfo.setFileSize((int) dataMap.get("fileSize"));
+                        versionInfo.setAppPackage((String) dataMap.get("appPackage"));
+                        System.out.println(versionInfo);
                         // 最新版本号
-                        int newVersionCode = version.getVersionCode();
+                        int newVersionCode = versionInfo.getVersionCode();
 
                         //当前版本号
                         PackageInfo packageInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
@@ -87,13 +76,12 @@ public class UpdateManager {
                         } else {
                             versionCode = packageInfo.versionCode;
                         }
-
                         if (versionCode < newVersionCode) {
                             // 有更新
                             handler.post(new Runnable() {
                                 @Override
                                 public void run() {
-                                    UpdateDialog updateDialog = new UpdateDialog(context, updateInfo);
+                                    UpdateDialog updateDialog = new UpdateDialog(context, versionInfo);
                                     updateDialog.show();
                                 }
                             });
@@ -102,10 +90,7 @@ public class UpdateManager {
                         e.printStackTrace();
                     }
                 }
-
             }
         }).start();
-
     }
-
 }

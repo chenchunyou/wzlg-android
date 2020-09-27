@@ -1,8 +1,8 @@
 package com.minghao.wzlg.domain;
 
-public class R {
-    private String msg;
+public class RtnDto {
     private int code;
+    private String msg;
     private Object data;
 
     public String getMsg() {
@@ -27,5 +27,14 @@ public class R {
 
     public void setData(Object data) {
         this.data = data;
+    }
+
+    @Override
+    public String toString() {
+        return "RtnDto{" +
+                "code=" + code +
+                ", msg='" + msg + '\'' +
+                ", data=" + data +
+                '}';
     }
 }

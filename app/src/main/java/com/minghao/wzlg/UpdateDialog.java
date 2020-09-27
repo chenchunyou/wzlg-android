@@ -21,28 +21,26 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 
+import com.minghao.wzlg.domain.AppVersionInfo;
 import com.minghao.wzlg.domain.File;
-import com.minghao.wzlg.domain.UpdateInfo;
-import com.minghao.wzlg.domain.Version;
 import com.minghao.wzlg.util.DownLoadUtil;
 import com.minghao.wzlg.util.MyUtils;
 
-import java.util.Objects;
-
 public class UpdateDialog extends Dialog {
 
-    private UpdateInfo info;
     private Button btn_yes;
     private Button btn_next;
     private TextView tv_modify_content;
     private ProgressBar progressBar;
+    private AppVersionInfo info;
 
-    public UpdateDialog(@NonNull Context context, UpdateInfo info) {
+public UpdateDialog(@NonNull Context context, AppVersionInfo info) {
         super(context, R.style.UpdateDialogStyle);
         this.info = info;
     }
 
-    @Override
+
+@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.update_dialog);
@@ -51,24 +49,11 @@ public class UpdateDialog extends Dialog {
         btn_yes = findViewById(R.id.btn_yes);
         btn_next = findViewById(R.id.btn_next);
         progressBar = findViewById(R.id.progressBar);
-        Version version = info.getVersion();
-        final File file = info.getFile();
-        tv_modify_content.setText(version.getModifyContent());
+        tv_modify_content.setText(info.getUpdateContent());
         this.setCancelable(false);
 
-        String houbian = file.getUrl().replace("http47.107.156.206profileupload", "");
-        String year = houbian.substring(0, 4);
-        String mouth = houbian.substring(4, 6);
-        String day = houbian.substring(6, 8);
-        String apk = houbian.substring(8);
-
-        final String downLoadUrl =  "http://47.107.156.206/profile/upload/"
-                + year +"/"
-                + mouth + "/"
-                + day + "/"
-                + apk;
-
-        btn_yes.setOnClickListener(new View.OnClickListener() {
+        //String houbian = file.getUrl().replace("http47.107.156.206profileupload", "");
+ btn_yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 btn_yes.setClickable(false);
@@ -76,14 +61,15 @@ public class UpdateDialog extends Dialog {
                 // 更新
                 progressBar.setVisibility(View.VISIBLE);
                 final Handler handler = new Handler();
+
                 // 下载线程
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
                         //储存下载文件的目录
                         String destFileDir = getContext().getCacheDir().getPath();
-                        String destFileName = file.getOriginalName();
-                        DownLoadUtil.get().download(downLoadUrl, destFileDir, destFileName, new DownLoadUtil.OnDownloadListener() {
+                        String destFileName = "wzlg.apk";
+                        DownLoadUtil.get().download(info.getDownloadUrl(), destFileDir, destFileName, new DownLoadUtil.OnDownloadListener() {
                             @Override
                             public void onDownloadSuccess(final java.io.File file) {
                                 handler.post(new Runnable() {
@@ -133,9 +119,8 @@ public class UpdateDialog extends Dialog {
 
                     }
                 }).start();
-
             }
-        });
+});
 
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,5 +131,6 @@ public class UpdateDialog extends Dialog {
                 dismiss();
             }
         });
+
     }
 }

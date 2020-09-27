@@ -40,7 +40,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="@dimen/layout_weight_date"
-                    android:background="@{week.datesOfWeek.get(0).equals(today) ? @drawable/textview_round_border1 : @drawable/textview_round_border0}"
+                    android:background="@{week.dates.get(0).equals(today) ? @drawable/textview_round_border1 : @drawable/textview_round_border0}"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -55,7 +55,7 @@
                             android:layout_height="wrap_content"
                             android:padding="2dp"
                             android:text="星期一"
-                            android:textColor="@{week.datesOfWeek.get(0).equals(today) ? @android:color/white : @color/my_gray}" />
+                            android:textColor="@{week.dates.get(0).equals(today) ? @android:color/white : @color/my_gray}" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -69,8 +69,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{week.datesOfWeek.get(0)}"
-                            android:textColor="@{week.datesOfWeek.get(0).equals(today) ? @android:color/white : @color/my_gray}" />
+                            android:text="@{week.dates.get(0)}"
+                            android:textColor="@{week.dates.get(0).equals(today) ? @android:color/white : @color/my_gray}" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -78,7 +78,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="@dimen/layout_weight_two_ketang"
-                    android:background="@{week.keTangs.get(0).course.name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border1}"
+                    android:background="@{week.courses.get(0).name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border1}"
                     android:orientation="vertical"
                     android:onClick="@{() -> viewModel.click(0)}">
 
@@ -93,7 +93,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{week.keTangs.get(0).course.name}"
+                            android:text="@{week.courses.get(0).name}"
                             android:textColor="@android:color/white"
                             android:textSize="@dimen/course_font_size" />
 
@@ -110,7 +110,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{week.keTangs.get(0).course.classroom}"
+                            android:text="@{week.courses.get(0).place}"
                             android:textColor="@android:color/white"
                             android:textSize="@dimen/course_font_size" />
                     </LinearLayout>
@@ -128,7 +128,7 @@
                         android:layout_height="0dp"
                         android:layout_weight="2"
                         android:onClick="@{() -> viewModel.click(7)}"
-                        android:background="@{week.keTangs.get(7).course.name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border1}"
+                        android:background="@{week.courses.get(7).name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border1}"
                         android:orientation="vertical">
 
                         <LinearLayout
@@ -142,7 +142,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@{week.keTangs.get(7).course.name}"
+                                android:text="@{week.courses.get(7).name}"
                                 android:textColor="@android:color/white"
                                 android:textSize="@dimen/course_font_size" />
                         </LinearLayout>
@@ -158,7 +158,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@{week.keTangs.get(7).course.classroom}"
+                                android:text="@{week.courses.get(7).place}"
                                 android:textColor="@android:color/white"
                                 android:textSize="@dimen/course_font_size" />
                         </LinearLayout>
@@ -168,7 +168,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:visibility="@{week.keTangs.get(7).course.threeLessons ? View.GONE : View.VISIBLE}" />
+                        android:visibility="@{week.courses.get(7).longCourse ? View.GONE : View.VISIBLE}" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -182,7 +182,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="2"
-                        android:background="@{week.keTangs.get(14).course.name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border1}"
+                        android:background="@{week.courses.get(14).name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border1}"
                         android:onClick="@{() -> viewModel.click(14)}"
                         android:orientation="vertical">
 
@@ -197,7 +197,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@{week.keTangs.get(14).course.name}"
+                                android:text="@{week.courses.get(14).name}"
                                 android:textColor="@android:color/white"
                                 android:textSize="@dimen/course_font_size" />
                         </LinearLayout>
@@ -213,7 +213,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@{week.keTangs.get(14).course.classroom}"
+                                android:text="@{week.courses.get(14).place}"
                                 android:textColor="@android:color/white"
                                 android:textSize="@dimen/course_font_size" />
                         </LinearLayout>
@@ -223,14 +223,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:visibility="@{week.keTangs.get(14).course.threeLessons ? View.GONE : View.VISIBLE}" />
+                        android:visibility="@{week.courses.get(14).longCourse ? View.GONE : View.VISIBLE}" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="@dimen/layout_weight_two_ketang"
-                    android:background="@{week.keTangs.get(21).course.name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border1}"
+                    android:background="@{week.courses.get(21).name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border1}"
                     android:onClick="@{() -> viewModel.click(21)}"
                     android:orientation="vertical">
 
@@ -245,7 +245,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{week.keTangs.get(21).course.name}"
+                            android:text="@{week.courses.get(21).name}"
                             android:textColor="@android:color/white"
                             android:textSize="@dimen/course_font_size" />
                     </LinearLayout>
@@ -261,7 +261,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{week.keTangs.get(21).course.classroom}"
+                            android:text="@{week.courses.get(21).place}"
                             android:textColor="@android:color/white"
                             android:textSize="@dimen/course_font_size" />
                     </LinearLayout>
@@ -278,7 +278,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="2"
-                        android:background="@{week.keTangs.get(28).course.name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border1}"
+                        android:background="@{week.courses.get(28).name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border1}"
                         android:onClick="@{() -> viewModel.click(28)}"
                         android:orientation="vertical">
 
@@ -293,7 +293,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@{week.keTangs.get(28).course.name}"
+                                android:text="@{week.courses.get(28).name}"
                                 android:textColor="@android:color/white"
                                 android:textSize="@dimen/course_font_size" />
                         </LinearLayout>
@@ -309,7 +309,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@{week.keTangs.get(28).course.classroom}"
+                                android:text="@{week.courses.get(28).place}"
                                 android:textColor="@android:color/white"
                                 android:textSize="@dimen/course_font_size" />
                         </LinearLayout>
@@ -319,7 +319,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:visibility="@{week.keTangs.get(28).course.threeLessons ? View.GONE : View.VISIBLE}" />
+                        android:visibility="@{week.courses.get(28).longCourse ? View.GONE : View.VISIBLE}" />
                 </LinearLayout>
             </LinearLayout>
             <!-- 星期二 -->
@@ -333,7 +333,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="@dimen/layout_weight_date"
-                    android:background="@{week.datesOfWeek.get(1).equals(today) ? @drawable/textview_round_border2 : @drawable/textview_round_border0}"
+                    android:background="@{week.dates.get(1).equals(today) ? @drawable/textview_round_border2 : @drawable/textview_round_border0}"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -345,10 +345,10 @@
 
                         <TextView
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:padding="2dp"
                             android:text="星期二"
-                            android:textColor="@{week.datesOfWeek.get(1).equals(today) ? @android:color/white : @color/my_gray}" />
+                            android:textColor="@{week.dates.get(1).equals(today) ? @android:color/white : @color/my_gray}" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -362,8 +362,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{week.datesOfWeek.get(1)}"
-                            android:textColor="@{week.datesOfWeek.get(1).equals(today) ? @android:color/white : @color/my_gray}" />
+                            android:text="@{week.dates.get(1)}"
+                            android:textColor="@{week.dates.get(1).equals(today) ? @android:color/white : @color/my_gray}" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -371,7 +371,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="@dimen/layout_weight_two_ketang"
-                    android:background="@{week.keTangs.get(1).course.name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border2}"
+                    android:background="@{week.courses.get(1).name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border2}"
                     android:orientation="vertical"
                     android:onClick="@{() -> viewModel.click(1)}">
 
@@ -386,9 +386,10 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{week.keTangs.get(1).course.name}"
+                            android:text="@{week.courses.get(1).name}"
                             android:textColor="@android:color/white"
                             android:textSize="@dimen/course_font_size" />
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -402,7 +403,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{week.keTangs.get(1).course.classroom}"
+                            android:text="@{week.courses.get(1).place}"
                             android:textColor="@android:color/white"
                             android:textSize="@dimen/course_font_size" />
                     </LinearLayout>
@@ -419,8 +420,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="2"
-                        android:background="@{week.keTangs.get(8).course.name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border2}"
                         android:onClick="@{() -> viewModel.click(8)}"
+                        android:background="@{week.courses.get(8).name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border2}"
                         android:orientation="vertical">
 
                         <LinearLayout
@@ -434,7 +435,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@{week.keTangs.get(8).course.name}"
+                                android:text="@{week.courses.get(8).name}"
                                 android:textColor="@android:color/white"
                                 android:textSize="@dimen/course_font_size" />
                         </LinearLayout>
@@ -450,7 +451,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@{week.keTangs.get(8).course.classroom}"
+                                android:text="@{week.courses.get(8).place}"
                                 android:textColor="@android:color/white"
                                 android:textSize="@dimen/course_font_size" />
                         </LinearLayout>
@@ -460,7 +461,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:visibility="@{week.keTangs.get(8).course.threeLessons ? View.GONE : View.VISIBLE}" />
+                        android:visibility="@{week.courses.get(8).longCourse ? View.GONE : View.VISIBLE}" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -474,7 +475,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="2"
-                        android:background="@{week.keTangs.get(15).course.name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border2}"
+                        android:background="@{week.courses.get(15).name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border2}"
                         android:onClick="@{() -> viewModel.click(15)}"
                         android:orientation="vertical">
 
@@ -489,7 +490,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@{week.keTangs.get(15).course.name}"
+                                android:text="@{week.courses.get(15).name}"
                                 android:textColor="@android:color/white"
                                 android:textSize="@dimen/course_font_size" />
                         </LinearLayout>
@@ -505,7 +506,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@{week.keTangs.get(15).course.classroom}"
+                                android:text="@{week.courses.get(15).place}"
                                 android:textColor="@android:color/white"
                                 android:textSize="@dimen/course_font_size" />
                         </LinearLayout>
@@ -515,14 +516,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:visibility="@{week.keTangs.get(15).course.threeLessons ? View.GONE : View.VISIBLE}" />
+                        android:visibility="@{week.courses.get(15).longCourse ? View.GONE : View.VISIBLE}" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="@dimen/layout_weight_two_ketang"
-                    android:background="@{week.keTangs.get(22).course.name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border2}"
+                    android:background="@{week.courses.get(22).name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border2}"
                     android:onClick="@{() -> viewModel.click(22)}"
                     android:orientation="vertical">
 
@@ -537,7 +538,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{week.keTangs.get(22).course.name}"
+                            android:text="@{week.courses.get(22).name}"
                             android:textColor="@android:color/white"
                             android:textSize="@dimen/course_font_size" />
                     </LinearLayout>
@@ -553,7 +554,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{week.keTangs.get(22).course.classroom}"
+                            android:text="@{week.courses.get(22).place}"
                             android:textColor="@android:color/white"
                             android:textSize="@dimen/course_font_size" />
                     </LinearLayout>
@@ -570,7 +571,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="2"
-                        android:background="@{week.keTangs.get(29).course.name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border2}"
+                        android:background="@{week.courses.get(29).name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border2}"
                         android:onClick="@{() -> viewModel.click(29)}"
                         android:orientation="vertical">
 
@@ -585,7 +586,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@{week.keTangs.get(29).course.name}"
+                                android:text="@{week.courses.get(29).name}"
                                 android:textColor="@android:color/white"
                                 android:textSize="@dimen/course_font_size" />
                         </LinearLayout>
@@ -601,7 +602,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@{week.keTangs.get(29).course.classroom}"
+                                android:text="@{week.courses.get(29).place}"
                                 android:textColor="@android:color/white"
                                 android:textSize="@dimen/course_font_size" />
                         </LinearLayout>
@@ -611,7 +612,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:visibility="@{week.keTangs.get(29).course.threeLessons ? View.GONE : View.VISIBLE}" />
+                        android:visibility="@{week.courses.get(29).longCourse ? View.GONE : View.VISIBLE}" />
                 </LinearLayout>
             </LinearLayout>
             <!-- 星期三 -->
@@ -625,7 +626,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="@dimen/layout_weight_date"
-                    android:background="@{week.datesOfWeek.get(2).equals(today) ? @drawable/textview_round_border3 : @drawable/textview_round_border0}"
+                    android:background="@{week.dates.get(2).equals(today) ? @drawable/textview_round_border3 : @drawable/textview_round_border0}"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -640,7 +641,7 @@
                             android:layout_height="wrap_content"
                             android:padding="2dp"
                             android:text="星期三"
-                            android:textColor="@{week.datesOfWeek.get(2).equals(today) ? @android:color/white : @color/my_gray}" />
+                            android:textColor="@{week.dates.get(2).equals(today) ? @android:color/white : @color/my_gray}" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -654,8 +655,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{week.datesOfWeek.get(2)}"
-                            android:textColor="@{week.datesOfWeek.get(2).equals(today) ? @android:color/white : @color/my_gray}" />
+                            android:text="@{week.dates.get(2)}"
+                            android:textColor="@{week.dates.get(2).equals(today) ? @android:color/white : @color/my_gray}" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -663,7 +664,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="@dimen/layout_weight_two_ketang"
-                    android:background="@{week.keTangs.get(2).course.name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border3}"
+                    android:background="@{week.courses.get(2).name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border3}"
                     android:orientation="vertical"
                     android:onClick="@{() -> viewModel.click(2)}">
 
@@ -678,9 +679,10 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{week.keTangs.get(2).course.name}"
+                            android:text="@{week.courses.get(2).name}"
                             android:textColor="@android:color/white"
                             android:textSize="@dimen/course_font_size" />
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -694,7 +696,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{week.keTangs.get(2).course.classroom}"
+                            android:text="@{week.courses.get(2).place}"
                             android:textColor="@android:color/white"
                             android:textSize="@dimen/course_font_size" />
                     </LinearLayout>
@@ -711,8 +713,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="2"
-                        android:background="@{week.keTangs.get(9).course.name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border3}"
                         android:onClick="@{() -> viewModel.click(9)}"
+                        android:background="@{week.courses.get(9).name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border3}"
                         android:orientation="vertical">
 
                         <LinearLayout
@@ -726,7 +728,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@{week.keTangs.get(9).course.name}"
+                                android:text="@{week.courses.get(9).name}"
                                 android:textColor="@android:color/white"
                                 android:textSize="@dimen/course_font_size" />
                         </LinearLayout>
@@ -742,7 +744,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@{week.keTangs.get(9).course.classroom}"
+                                android:text="@{week.courses.get(9).place}"
                                 android:textColor="@android:color/white"
                                 android:textSize="@dimen/course_font_size" />
                         </LinearLayout>
@@ -752,7 +754,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:visibility="@{week.keTangs.get(9).course.threeLessons ? View.GONE : View.VISIBLE}" />
+                        android:visibility="@{week.courses.get(9).longCourse ? View.GONE : View.VISIBLE}" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -766,7 +768,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="2"
-                        android:background="@{week.keTangs.get(16).course.name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border3}"
+                        android:background="@{week.courses.get(16).name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border1}"
                         android:onClick="@{() -> viewModel.click(16)}"
                         android:orientation="vertical">
 
@@ -781,7 +783,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@{week.keTangs.get(16).course.name}"
+                                android:text="@{week.courses.get(16).name}"
                                 android:textColor="@android:color/white"
                                 android:textSize="@dimen/course_font_size" />
                         </LinearLayout>
@@ -797,7 +799,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@{week.keTangs.get(16).course.classroom}"
+                                android:text="@{week.courses.get(16).place}"
                                 android:textColor="@android:color/white"
                                 android:textSize="@dimen/course_font_size" />
                         </LinearLayout>
@@ -807,14 +809,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:visibility="@{week.keTangs.get(16).course.threeLessons ? View.GONE : View.VISIBLE}" />
+                        android:visibility="@{week.courses.get(16).longCourse ? View.GONE : View.VISIBLE}" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="@dimen/layout_weight_two_ketang"
-                    android:background="@{week.keTangs.get(23).course.name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border3}"
+                    android:background="@{week.courses.get(23).name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border3}"
                     android:onClick="@{() -> viewModel.click(23)}"
                     android:orientation="vertical">
 
@@ -829,7 +831,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{week.keTangs.get(23).course.name}"
+                            android:text="@{week.courses.get(23).name}"
                             android:textColor="@android:color/white"
                             android:textSize="@dimen/course_font_size" />
                     </LinearLayout>
@@ -845,7 +847,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{week.keTangs.get(23).course.classroom}"
+                            android:text="@{week.courses.get(23).place}"
                             android:textColor="@android:color/white"
                             android:textSize="@dimen/course_font_size" />
                     </LinearLayout>
@@ -862,7 +864,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="2"
-                        android:background="@{week.keTangs.get(30).course.name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border3}"
+                        android:background="@{week.courses.get(30).name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border3}"
                         android:onClick="@{() -> viewModel.click(30)}"
                         android:orientation="vertical">
 
@@ -877,7 +879,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@{week.keTangs.get(30).course.name}"
+                                android:text="@{week.courses.get(30).name}"
                                 android:textColor="@android:color/white"
                                 android:textSize="@dimen/course_font_size" />
                         </LinearLayout>
@@ -893,7 +895,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@{week.keTangs.get(30).course.classroom}"
+                                android:text="@{week.courses.get(30).place}"
                                 android:textColor="@android:color/white"
                                 android:textSize="@dimen/course_font_size" />
                         </LinearLayout>
@@ -903,7 +905,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:visibility="@{week.keTangs.get(30).course.threeLessons ? View.GONE : View.VISIBLE}" />
+                        android:visibility="@{week.courses.get(30).longCourse ? View.GONE : View.VISIBLE}" />
                 </LinearLayout>
             </LinearLayout>
             <!-- 星期四 -->
@@ -917,7 +919,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="@dimen/layout_weight_date"
-                    android:background="@{week.datesOfWeek.get(3).equals(today) ? @drawable/textview_round_border4 : @drawable/textview_round_border0}"
+                    android:background="@{week.dates.get(3).equals(today) ? @drawable/textview_round_border4 : @drawable/textview_round_border0}"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -932,7 +934,7 @@
                             android:layout_height="wrap_content"
                             android:padding="2dp"
                             android:text="星期四"
-                            android:textColor="@{week.datesOfWeek.get(3).equals(today) ? @android:color/white : @color/my_gray}" />
+                            android:textColor="@{week.dates.get(3).equals(today) ? @android:color/white : @color/my_gray}" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -946,8 +948,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{week.datesOfWeek.get(3)}"
-                            android:textColor="@{week.datesOfWeek.get(3).equals(today) ? @android:color/white : @color/my_gray}" />
+                            android:text="@{week.dates.get(3)}"
+                            android:textColor="@{week.dates.get(3).equals(today) ? @android:color/white : @color/my_gray}" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -955,7 +957,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="@dimen/layout_weight_two_ketang"
-                    android:background="@{week.keTangs.get(3).course.name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border4}"
+                    android:background="@{week.courses.get(3).name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border1}"
                     android:orientation="vertical"
                     android:onClick="@{() -> viewModel.click(3)}">
 
@@ -970,9 +972,10 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{week.keTangs.get(3).course.name}"
+                            android:text="@{week.courses.get(3).name}"
                             android:textColor="@android:color/white"
                             android:textSize="@dimen/course_font_size" />
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -986,7 +989,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{week.keTangs.get(3).course.classroom}"
+                            android:text="@{week.courses.get(3).place}"
                             android:textColor="@android:color/white"
                             android:textSize="@dimen/course_font_size" />
                     </LinearLayout>
@@ -1003,8 +1006,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="2"
-                        android:background="@{week.keTangs.get(10).course.name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border4}"
                         android:onClick="@{() -> viewModel.click(10)}"
+                        android:background="@{week.courses.get(10).name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border1}"
                         android:orientation="vertical">
 
                         <LinearLayout
@@ -1018,7 +1021,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@{week.keTangs.get(10).course.name}"
+                                android:text="@{week.courses.get(10).name}"
                                 android:textColor="@android:color/white"
                                 android:textSize="@dimen/course_font_size" />
                         </LinearLayout>
@@ -1034,7 +1037,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@{week.keTangs.get(10).course.classroom}"
+                                android:text="@{week.courses.get(10).place}"
                                 android:textColor="@android:color/white"
                                 android:textSize="@dimen/course_font_size" />
                         </LinearLayout>
@@ -1044,7 +1047,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:visibility="@{week.keTangs.get(10).course.threeLessons ? View.GONE : View.VISIBLE}" />
+                        android:visibility="@{week.courses.get(10).longCourse ? View.GONE : View.VISIBLE}" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -1058,7 +1061,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="2"
-                        android:background="@{week.keTangs.get(17).course.name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border4}"
+                        android:background="@{week.courses.get(17).name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border4}"
                         android:onClick="@{() -> viewModel.click(17)}"
                         android:orientation="vertical">
 
@@ -1073,7 +1076,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@{week.keTangs.get(17).course.name}"
+                                android:text="@{week.courses.get(17).name}"
                                 android:textColor="@android:color/white"
                                 android:textSize="@dimen/course_font_size" />
                         </LinearLayout>
@@ -1089,7 +1092,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@{week.keTangs.get(17).course.classroom}"
+                                android:text="@{week.courses.get(17).place}"
                                 android:textColor="@android:color/white"
                                 android:textSize="@dimen/course_font_size" />
                         </LinearLayout>
@@ -1099,14 +1102,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:visibility="@{week.keTangs.get(17).course.threeLessons ? View.GONE : View.VISIBLE}" />
+                        android:visibility="@{week.courses.get(17).longCourse ? View.GONE : View.VISIBLE}" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="@dimen/layout_weight_two_ketang"
-                    android:background="@{week.keTangs.get(24).course.name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border4}"
+                    android:background="@{week.courses.get(24).name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border4}"
                     android:onClick="@{() -> viewModel.click(24)}"
                     android:orientation="vertical">
 
@@ -1121,7 +1124,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{week.keTangs.get(24).course.name}"
+                            android:text="@{week.courses.get(24).name}"
                             android:textColor="@android:color/white"
                             android:textSize="@dimen/course_font_size" />
                     </LinearLayout>
@@ -1137,7 +1140,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{week.keTangs.get(24).course.classroom}"
+                            android:text="@{week.courses.get(24).place}"
                             android:textColor="@android:color/white"
                             android:textSize="@dimen/course_font_size" />
                     </LinearLayout>
@@ -1154,7 +1157,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="2"
-                        android:background="@{week.keTangs.get(31).course.name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border4}"
+                        android:background="@{week.courses.get(31).name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border4}"
                         android:onClick="@{() -> viewModel.click(31)}"
                         android:orientation="vertical">
 
@@ -1169,7 +1172,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@{week.keTangs.get(31).course.name}"
+                                android:text="@{week.courses.get(31).name}"
                                 android:textColor="@android:color/white"
                                 android:textSize="@dimen/course_font_size" />
                         </LinearLayout>
@@ -1185,7 +1188,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@{week.keTangs.get(31).course.classroom}"
+                                android:text="@{week.courses.get(31).place}"
                                 android:textColor="@android:color/white"
                                 android:textSize="@dimen/course_font_size" />
                         </LinearLayout>
@@ -1195,7 +1198,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:visibility="@{week.keTangs.get(31).course.threeLessons ? View.GONE : View.VISIBLE}" />
+                        android:visibility="@{week.courses.get(31).longCourse ? View.GONE : View.VISIBLE}" />
                 </LinearLayout>
             </LinearLayout>
             <!-- 星期五 -->
@@ -1209,7 +1212,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="@dimen/layout_weight_date"
-                    android:background="@{week.datesOfWeek.get(4).equals(today) ? @drawable/textview_round_border5 : @drawable/textview_round_border0}"
+                    android:background="@{week.dates.get(4).equals(today) ? @drawable/textview_round_border1 : @drawable/textview_round_border0}"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -1224,7 +1227,7 @@
                             android:layout_height="wrap_content"
                             android:padding="2dp"
                             android:text="星期五"
-                            android:textColor="@{week.datesOfWeek.get(4).equals(today) ? @android:color/white : @color/my_gray}" />
+                            android:textColor="@{week.dates.get(4).equals(today) ? @android:color/white : @color/my_gray}" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -1232,14 +1235,14 @@
                         android:layout_height="0dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:padding="2dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:padding="2dp"
-                            android:text="@{week.datesOfWeek.get(4)}"
-                            android:textColor="@{week.datesOfWeek.get(4).equals(today) ? @android:color/white : @color/my_gray}" />
+                            android:text="@{week.dates.get(4)}"
+                            android:textColor="@{week.dates.get(0).equals(today) ? @android:color/white : @color/my_gray}" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -1247,7 +1250,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="@dimen/layout_weight_two_ketang"
-                    android:background="@{week.keTangs.get(4).course.name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border5}"
+                    android:background="@{week.courses.get(4).name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border5}"
                     android:orientation="vertical"
                     android:onClick="@{() -> viewModel.click(4)}">
 
@@ -1262,9 +1265,10 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{week.keTangs.get(4).course.name}"
+                            android:text="@{week.courses.get(4).name}"
                             android:textColor="@android:color/white"
                             android:textSize="@dimen/course_font_size" />
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -1278,7 +1282,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{week.keTangs.get(4).course.classroom}"
+                            android:text="@{week.courses.get(4).place}"
                             android:textColor="@android:color/white"
                             android:textSize="@dimen/course_font_size" />
                     </LinearLayout>
@@ -1295,8 +1299,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="2"
-                        android:background="@{week.keTangs.get(11).course.name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border5}"
                         android:onClick="@{() -> viewModel.click(11)}"
+                        android:background="@{week.courses.get(11).name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border5}"
                         android:orientation="vertical">
 
                         <LinearLayout
@@ -1310,7 +1314,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@{week.keTangs.get(11).course.name}"
+                                android:text="@{week.courses.get(11).name}"
                                 android:textColor="@android:color/white"
                                 android:textSize="@dimen/course_font_size" />
                         </LinearLayout>
@@ -1326,7 +1330,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@{week.keTangs.get(11).course.classroom}"
+                                android:text="@{week.courses.get(11).place}"
                                 android:textColor="@android:color/white"
                                 android:textSize="@dimen/course_font_size" />
                         </LinearLayout>
@@ -1336,7 +1340,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:visibility="@{week.keTangs.get(11).course.threeLessons ? View.GONE : View.VISIBLE}" />
+                        android:visibility="@{week.courses.get(11).longCourse ? View.GONE : View.VISIBLE}" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -1350,7 +1354,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="2"
-                        android:background="@{week.keTangs.get(18).course.name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border5}"
+                        android:background="@{week.courses.get(18).name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border1}"
                         android:onClick="@{() -> viewModel.click(18)}"
                         android:orientation="vertical">
 
@@ -1365,7 +1369,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@{week.keTangs.get(18).course.name}"
+                                android:text="@{week.courses.get(18).name}"
                                 android:textColor="@android:color/white"
                                 android:textSize="@dimen/course_font_size" />
                         </LinearLayout>
@@ -1381,7 +1385,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@{week.keTangs.get(18).course.classroom}"
+                                android:text="@{week.courses.get(18).place}"
                                 android:textColor="@android:color/white"
                                 android:textSize="@dimen/course_font_size" />
                         </LinearLayout>
@@ -1391,14 +1395,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:visibility="@{week.keTangs.get(18).course.threeLessons ? View.GONE : View.VISIBLE}" />
+                        android:visibility="@{week.courses.get(18).longCourse ? View.GONE : View.VISIBLE}" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="@dimen/layout_weight_two_ketang"
-                    android:background="@{week.keTangs.get(25).course.name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border5}"
+                    android:background="@{week.courses.get(25).name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border5}"
                     android:onClick="@{() -> viewModel.click(25)}"
                     android:orientation="vertical">
 
@@ -1413,7 +1417,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{week.keTangs.get(25).course.name}"
+                            android:text="@{week.courses.get(25).name}"
                             android:textColor="@android:color/white"
                             android:textSize="@dimen/course_font_size" />
                     </LinearLayout>
@@ -1429,7 +1433,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{week.keTangs.get(25).course.classroom}"
+                            android:text="@{week.courses.get(25).place}"
                             android:textColor="@android:color/white"
                             android:textSize="@dimen/course_font_size" />
                     </LinearLayout>
@@ -1446,7 +1450,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="2"
-                        android:background="@{week.keTangs.get(32).course.name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border5}"
+                        android:background="@{week.courses.get(32).name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border5}"
                         android:onClick="@{() -> viewModel.click(32)}"
                         android:orientation="vertical">
 
@@ -1461,7 +1465,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@{week.keTangs.get(32).course.name}"
+                                android:text="@{week.courses.get(32).name}"
                                 android:textColor="@android:color/white"
                                 android:textSize="@dimen/course_font_size" />
                         </LinearLayout>
@@ -1477,7 +1481,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@{week.keTangs.get(32).course.classroom}"
+                                android:text="@{week.courses.get(32).place}"
                                 android:textColor="@android:color/white"
                                 android:textSize="@dimen/course_font_size" />
                         </LinearLayout>
@@ -1487,595 +1491,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:visibility="@{week.keTangs.get(32).course.threeLessons ? View.GONE : View.VISIBLE}" />
+                        android:visibility="@{week.courses.get(32).longCourse ? View.GONE : View.VISIBLE}" />
                 </LinearLayout>
             </LinearLayout>
             <!-- 星期六 -->
-            <LinearLayout
-                android:id="@+id/layout_saturday"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="@dimen/layout_weight_date"
-                    android:background="@{week.datesOfWeek.get(5).equals(today) ? @drawable/textview_round_border6 : @drawable/textview_round_border0}"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="2dp"
-                            android:text="星期六"
-                            android:textColor="@{week.datesOfWeek.get(5).equals(today) ? @android:color/white : @color/my_gray}" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="2dp"
-                            android:text="@{week.datesOfWeek.get(5)}"
-                            android:textColor="@{week.datesOfWeek.get(5).equals(today) ? @android:color/white : @color/my_gray}" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="@dimen/layout_weight_two_ketang"
-                    android:background="@{week.keTangs.get(5).course.name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border6}"
-                    android:onClick="@{() -> viewModel.click(5)}"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="@dimen/layout_weight_course_name"
-                        android:gravity="center|top"
-                        android:orientation="vertical"
-                        android:padding="2dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@{week.keTangs.get(5).course.name}"
-                            android:textColor="@android:color/white"
-                            android:textSize="@dimen/course_font_size" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="@dimen/layout_weight_course_classroom"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:padding="2dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@{week.keTangs.get(5).course.classroom}"
-                            android:textColor="@android:color/white"
-                            android:textSize="@dimen/course_font_size" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="@dimen/layout_weight_three_ketang"
-                    android:background="@drawable/textview_round_border0"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="2"
-                        android:background="@{week.keTangs.get(12).course.name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border6}"
-                        android:onClick="@{() -> viewModel.click(12)}"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="@dimen/layout_weight_course_name"
-                            android:gravity="center|top"
-                            android:orientation="vertical"
-                            android:padding="2dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@{week.keTangs.get(12).course.name}"
-                                android:textColor="@android:color/white"
-                                android:textSize="@dimen/course_font_size" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="@dimen/layout_weight_course_classroom"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            android:padding="2dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@{week.keTangs.get(12).course.classroom}"
-                                android:textColor="@android:color/white"
-                                android:textSize="@dimen/course_font_size" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:visibility="@{week.keTangs.get(12).course.threeLessons ? View.GONE : View.VISIBLE}" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="@dimen/layout_weight_three_ketang"
-                    android:background="@drawable/textview_round_border0"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="2"
-                        android:background="@{week.keTangs.get(19).course.name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border6}"
-                        android:onClick="@{() -> viewModel.click(19)}"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="@dimen/layout_weight_course_name"
-                            android:gravity="center|top"
-                            android:orientation="vertical"
-                            android:padding="2dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@{week.keTangs.get(19).course.name}"
-                                android:textColor="@android:color/white"
-                                android:textSize="@dimen/course_font_size" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="@dimen/layout_weight_course_classroom"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            android:padding="2dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@{week.keTangs.get(19).course.classroom}"
-                                android:textColor="@android:color/white"
-                                android:textSize="@dimen/course_font_size" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:visibility="@{week.keTangs.get(19).course.threeLessons ? View.GONE : View.VISIBLE}" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="@dimen/layout_weight_two_ketang"
-                    android:background="@{week.keTangs.get(26).course.name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border6}"
-                    android:onClick="@{() -> viewModel.click(26)}"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="@dimen/layout_weight_course_name"
-                        android:gravity="center|top"
-                        android:orientation="vertical"
-                        android:padding="2dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@{week.keTangs.get(26).course.name}"
-                            android:textColor="@android:color/white"
-                            android:textSize="@dimen/course_font_size" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="@dimen/layout_weight_course_classroom"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:padding="2dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@{week.keTangs.get(26).course.classroom}"
-                            android:textColor="@android:color/white"
-                            android:textSize="@dimen/course_font_size" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="@dimen/layout_weight_three_ketang"
-                    android:background="@drawable/textview_round_border0"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="2"
-                        android:background="@{week.keTangs.get(33).course.name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border6}"
-                        android:onClick="@{() -> viewModel.click(33)}"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="@dimen/layout_weight_course_name"
-                            android:gravity="center|top"
-                            android:orientation="vertical"
-                            android:padding="2dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@{week.keTangs.get(33).course.name}"
-                                android:textColor="@android:color/white"
-                                android:textSize="@dimen/course_font_size" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="@dimen/layout_weight_course_classroom"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            android:padding="2dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@{week.keTangs.get(33).course.classroom}"
-                                android:textColor="@android:color/white"
-                                android:textSize="@dimen/course_font_size" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:visibility="@{week.keTangs.get(33).course.threeLessons ? View.GONE : View.VISIBLE}" />
-                </LinearLayout>
-            </LinearLayout>
             <!-- 星期天 -->
-            <LinearLayout
-                android:id="@+id/layout_sunday"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="@dimen/layout_weight_date"
-                    android:background="@{week.datesOfWeek.get(6).equals(today) ? @drawable/textview_round_border7 : @drawable/textview_round_border0}"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="2dp"
-                            android:text="星期天"
-                            android:textColor="@{week.datesOfWeek.get(6).equals(today) ? @android:color/white : @color/my_gray}" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="2dp"
-                            android:text="@{week.datesOfWeek.get(6)}"
-                            android:textColor="@{week.datesOfWeek.get(6).equals(today) ? @android:color/white : @color/my_gray}" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="@dimen/layout_weight_two_ketang"
-                    android:background="@{week.keTangs.get(6).course.name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border5}"
-                    android:onClick="@{() -> viewModel.click(6)}"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="@dimen/layout_weight_course_name"
-                        android:gravity="center|top"
-                        android:orientation="vertical"
-                        android:padding="2dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@{week.keTangs.get(6).course.name}"
-                            android:textColor="@android:color/white"
-                            android:textSize="@dimen/course_font_size" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="@dimen/layout_weight_course_classroom"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:padding="2dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@{week.keTangs.get(6).course.classroom}"
-                            android:textColor="@android:color/white"
-                            android:textSize="@dimen/course_font_size" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="@dimen/layout_weight_three_ketang"
-                    android:background="@drawable/textview_round_border0"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="2"
-                        android:background="@{week.keTangs.get(13).course.name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border7}"
-                        android:onClick="@{() -> viewModel.click(13)}"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="@dimen/layout_weight_course_name"
-                            android:gravity="center|top"
-                            android:orientation="vertical"
-                            android:padding="2dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@{week.keTangs.get(13).course.name}"
-                                android:textColor="@android:color/white"
-                                android:textSize="@dimen/course_font_size" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="@dimen/layout_weight_course_classroom"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            android:padding="2dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@{week.keTangs.get(13).course.classroom}"
-                                android:textColor="@android:color/white"
-                                android:textSize="@dimen/course_font_size" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:visibility="@{week.keTangs.get(13).course.threeLessons ? View.GONE : View.VISIBLE}" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="@dimen/layout_weight_three_ketang"
-                    android:background="@drawable/textview_round_border0"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="2"
-                        android:background="@{week.keTangs.get(20).course.name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border5}"
-                        android:onClick="@{() -> viewModel.click(20)}"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="@dimen/layout_weight_course_name"
-                            android:gravity="center|top"
-                            android:orientation="vertical"
-                            android:padding="2dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@{week.keTangs.get(20).course.name}"
-                                android:textColor="@android:color/white"
-                                android:textSize="@dimen/course_font_size" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="@dimen/layout_weight_course_classroom"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            android:padding="2dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@{week.keTangs.get(20).course.classroom}"
-                                android:textColor="@android:color/white"
-                                android:textSize="@dimen/course_font_size" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:visibility="@{week.keTangs.get(20).course.threeLessons ? View.GONE : View.VISIBLE}" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="@dimen/layout_weight_two_ketang"
-                    android:background="@{week.keTangs.get(27).course.name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border7}"
-                    android:onClick="@{() -> viewModel.click(27)}"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="@dimen/layout_weight_course_name"
-                        android:gravity="center|top"
-                        android:orientation="vertical"
-                        android:padding="2dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@{week.keTangs.get(27).course.name}"
-                            android:textColor="@android:color/white"
-                            android:textSize="@dimen/course_font_size" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="@dimen/layout_weight_course_classroom"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:padding="2dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@{week.keTangs.get(27).course.classroom}"
-                            android:textColor="@android:color/white"
-                            android:textSize="@dimen/course_font_size" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="@dimen/layout_weight_three_ketang"
-                    android:background="@drawable/textview_round_border0"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="2"
-                        android:background="@{week.keTangs.get(34).course.name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border7}"
-                        android:onClick="@{() -> viewModel.click(34)}"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="@dimen/layout_weight_course_name"
-                            android:gravity="center|top"
-                            android:orientation="vertical"
-                            android:padding="2dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@{week.keTangs.get(34).course.name}"
-                                android:textColor="@android:color/white"
-                                android:textSize="@dimen/course_font_size" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="@dimen/layout_weight_course_classroom"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            android:padding="2dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@{week.keTangs.get(34).course.classroom}"
-                                android:textColor="@android:color/white"
-                                android:textSize="@dimen/course_font_size" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:visibility="@{week.keTangs.get(34).course.threeLessons ? View.GONE : View.VISIBLE}" />
-                </LinearLayout>
-            </LinearLayout>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

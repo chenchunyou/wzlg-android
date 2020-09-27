@@ -1,15 +1,9 @@
 package com.minghao.wzlg;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 import androidx.databinding.DataBindingUtil;
-
-import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
@@ -17,25 +11,25 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.Toast;
-
 import com.google.gson.Gson;
 import com.minghao.wzlg.databinding.ActivityLauncherBinding;
-import com.minghao.wzlg.domain.ResultInfo;
+import com.minghao.wzlg.domain.RtnDto;
 import com.minghao.wzlg.util.EncryptUtil;
 import com.minghao.wzlg.util.MyUtils;
-import com.minghao.wzlg.util.UpdateManager;
-
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Objects;
-
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class LauncherActivity extends AppCompatActivity {
 
     private ActivityLauncherBinding binding;
     private AlphaAnimation apperaAnimation;
+    private String domain = "http://uqubang.com/ruoyi-admin/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,23 +37,14 @@ public class LauncherActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_launcher);
         apperaAnimation = new AlphaAnimation(0, 1);
         apperaAnimation.setDuration(800);
-
         if (binding.imgLog.getVisibility() == View.GONE) {
             binding.imgLog.startAnimation(apperaAnimation);
             binding.imgLog.setVisibility(View.VISIBLE);
         }
-
         if (binding.imgWzlg.getVisibility() == View.GONE) {
             binding.imgWzlg.startAnimation(apperaAnimation);
             binding.imgWzlg.setVisibility(View.VISIBLE);
         }
-
-        /*//检查获取权限
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this, PERMISSIONS_STORAGE, REQUEST_PERMISSION_CODE);
-            } else start();
-        } else start();*/
         start();
     }
 
@@ -118,7 +103,7 @@ public class LauncherActivity extends AppCompatActivity {
                 binding.btnLogin.startAnimation(apperaAnimation);
                 binding.btnLogin.setVisibility(View.VISIBLE);
                 //检查更新
-                UpdateManager.checkUpdate(LauncherActivity.this);
+                //UpdateManager.checkUpdate(LauncherActivity.this);
             }
         });
 
@@ -145,34 +130,40 @@ public class LauncherActivity extends AppCompatActivity {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        String username = EncryptUtil.md5(xuehao);
+                        final MediaType JSON = MediaType.get("application/json; charset=utf-8");
+                        String studentNumber = EncryptUtil.md5(xuehao);
                         String password1 = EncryptUtil.sha(xuehao + password);
-                        String url = "http://47.107.156.206/lgkcb/login?username=" + username
-                                + "&password=" + password1;
+                        String url = domain + "app/data/student" + "?studentNumber=" +studentNumber + "&password=" + password1;
                         OkHttpClient httpClient = new OkHttpClient();
+                        HashMap<String, String> map = new HashMap<>();
+                        map.put("studentNumber", studentNumber);
+                        map.put("password", password1);
+                        Gson gson = new Gson();
+                        String json = gson.toJson(map);
+                        RequestBody body = RequestBody.create(json, JSON);
                         Request request = new Request.Builder()
                                 .url(url)
+                                .post(body)
                                 .build();
-                        try (final Response response = httpClient.newCall(request).execute();) {
+                        try {
+                            Response response = httpClient.newCall(request).execute();
                             final String responseBodyStr = Objects.requireNonNull(response.body()).string();
                             if (!TextUtils.isEmpty(responseBodyStr)) {
-                                // 持久化数据
-                                preferences.edit().putString("responseBodyStr", responseBodyStr).apply();
-
                                 handler.post(new Runnable() {
                                     @Override
                                     public void run() {
                                         // 解析数据
                                         Gson gson = new Gson();
-                                        ResultInfo resultInfo = gson.fromJson(responseBodyStr, ResultInfo.class);
-                                        if (!resultInfo.isFlag()) {
-                                            MyUtils.updateToast(LauncherActivity.this, resultInfo.getErrorMsg(), Toast.LENGTH_SHORT);
+                                        RtnDto rtnDto = gson.fromJson(responseBodyStr, RtnDto.class);
+                                        if (rtnDto.getCode() != 200) {
+                                            MyUtils.updateToast(LauncherActivity.this, rtnDto.getMsg(), Toast.LENGTH_SHORT);
                                             loadingDialog.dismiss();
                                         } else {
                                             // 绑定成功
                                             Intent intent = new Intent(LauncherActivity.this, MainActivity.class);
                                             intent.putExtra("json_result", responseBodyStr);
                                             startActivity(intent);
+                                            loadingDialog.dismiss();
                                             finish();
                                         }
                                     }
@@ -186,6 +177,8 @@ public class LauncherActivity extends AppCompatActivity {
                                     }
                                 });
                             }
+                            // 持久化数据
+                            preferences.edit().putString("responseBodyStr", responseBodyStr).apply();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }

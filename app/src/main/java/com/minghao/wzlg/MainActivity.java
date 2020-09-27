@@ -29,16 +29,11 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager2 viewPager2;
     private MyFragmentPagerAdapter mAdapter;
     private List<Fragment> fragments;
-    private boolean weekendVisibility = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        // 检查更新
-        UpdateManager.checkUpdate(this);
-
         Intent intent = getIntent();
         Student student = null;
         if (intent != null) {
@@ -50,13 +45,15 @@ public class MainActivity extends AppCompatActivity {
         viewPager2 = findViewById(R.id.viewPager2);
         // 准备fragments
         fragments = new ArrayList<>();
-        List<Week> weeks = student.getTable().getWeeks();
+        assert student != null;
+        List<Week> weeks = student.getCourseTable().getWeeks();
         for (int i = 0; i < weeks.size(); i++) {
             fragments.add(CourseTableFragment.newInstance(weeks.get(i)));
         }
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
-        int weekIndex = calendar.get(Calendar.WEEK_OF_YEAR) - 9;
+        calendar.setFirstDayOfWeek(Calendar.MONDAY);
+        int weekIndex = calendar.get(Calendar.WEEK_OF_YEAR) - 29 - 8;
         if (weekIndex < 0) {
             weekIndex = 0;
         }
@@ -66,15 +63,16 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager(), getLifecycle(), fragments);
         viewPager2.setAdapter(mAdapter);
         viewPager2.setCurrentItem(weekIndex, false);
-        setTitle("第 " + (weekIndex + 1) + " 周 (滑动页面切换)");
+        setTitle("第 " + (weekIndex + 1) + " 周");
         viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
-                setTitle("第 " + (position + 1) + " 周 (滑动页面切换)");
+                setTitle("第 " + (position + 1) + " 周");
             }
         });
         viewPager2.setOffscreenPageLimit(3);
+        UpdateManager.checkUpdate(this);
     }
 
     @Override
@@ -94,19 +92,6 @@ public class MainActivity extends AppCompatActivity {
             finish();
             return true;
         }
-
-        if (itemId == R.id.item_weekend_exchange) {
-            CourseTableFragment fragment = (CourseTableFragment) fragments.get(viewPager2.getCurrentItem());
-            if (item.getTitle().equals("隐藏周末")) {
-                fragment.setWeenkendVisibility(false);
-                item.setTitle("显示周末");
-            } else {
-                fragment.setWeenkendVisibility(true);
-                item.setTitle("隐藏周末");
-            }
-            return true;
-        }
-
         return super.onOptionsItemSelected(item);
     }
 

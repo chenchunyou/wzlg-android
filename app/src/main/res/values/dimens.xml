@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <item name="layout_weight_date" type="dimen" format="float">1.6</item>
-    <item name="layout_weight_course_name" type="dimen" format="float">1.2</item>
+    <item name="layout_weight_course_name" type="dimen" format="float">1</item>
     <dimen name="layout_weight_two_ketang">4</dimen>
     <dimen name="layout_weight_three_ketang">6</dimen>
     <dimen name="course_font_size">13sp</dimen>
