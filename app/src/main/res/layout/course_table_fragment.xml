@@ -55,7 +55,8 @@
                             android:layout_height="wrap_content"
                             android:padding="2dp"
                             android:text="星期一"
-                            android:textColor="@{week.dates.get(0).equals(today) ? @android:color/white : @color/my_gray}" />
+                            android:textColor="@{week.dates.get(0).equals(today) ? @android:color/white : @color/my_gray}"
+                            android:textSize="12sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -70,7 +71,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@{week.dates.get(0)}"
-                            android:textColor="@{week.dates.get(0).equals(today) ? @android:color/white : @color/my_gray}" />
+                            android:textColor="@{week.dates.get(0).equals(today) ? @android:color/white : @color/my_gray}"
+                            android:textSize="12sp" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -348,7 +350,8 @@
                             android:layout_height="wrap_content"
                             android:padding="2dp"
                             android:text="星期二"
-                            android:textColor="@{week.dates.get(1).equals(today) ? @android:color/white : @color/my_gray}" />
+                            android:textColor="@{week.dates.get(1).equals(today) ? @android:color/white : @color/my_gray}"
+                            android:textSize="12sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -363,7 +366,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@{week.dates.get(1)}"
-                            android:textColor="@{week.dates.get(1).equals(today) ? @android:color/white : @color/my_gray}" />
+                            android:textColor="@{week.dates.get(1).equals(today) ? @android:color/white : @color/my_gray}"
+                            android:textSize="12sp" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -641,7 +645,8 @@
                             android:layout_height="wrap_content"
                             android:padding="2dp"
                             android:text="星期三"
-                            android:textColor="@{week.dates.get(2).equals(today) ? @android:color/white : @color/my_gray}" />
+                            android:textColor="@{week.dates.get(2).equals(today) ? @android:color/white : @color/my_gray}"
+                            android:textSize="12sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -656,7 +661,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@{week.dates.get(2)}"
-                            android:textColor="@{week.dates.get(2).equals(today) ? @android:color/white : @color/my_gray}" />
+                            android:textColor="@{week.dates.get(2).equals(today) ? @android:color/white : @color/my_gray}"
+                            android:textSize="12sp" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -934,7 +940,8 @@
                             android:layout_height="wrap_content"
                             android:padding="2dp"
                             android:text="星期四"
-                            android:textColor="@{week.dates.get(3).equals(today) ? @android:color/white : @color/my_gray}" />
+                            android:textColor="@{week.dates.get(3).equals(today) ? @android:color/white : @color/my_gray}"
+                            android:textSize="12sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -949,7 +956,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@{week.dates.get(3)}"
-                            android:textColor="@{week.dates.get(3).equals(today) ? @android:color/white : @color/my_gray}" />
+                            android:textColor="@{week.dates.get(3).equals(today) ? @android:color/white : @color/my_gray}"
+                            android:textSize="12sp" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -1212,7 +1220,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="@dimen/layout_weight_date"
-                    android:background="@{week.dates.get(4).equals(today) ? @drawable/textview_round_border1 : @drawable/textview_round_border0}"
+                    android:background="@{week.dates.get(4).equals(today) ? @drawable/textview_round_border4 : @drawable/textview_round_border0}"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -1227,7 +1235,8 @@
                             android:layout_height="wrap_content"
                             android:padding="2dp"
                             android:text="星期五"
-                            android:textColor="@{week.dates.get(4).equals(today) ? @android:color/white : @color/my_gray}" />
+                            android:textColor="@{week.dates.get(4).equals(today) ? @android:color/white : @color/my_gray}"
+                            android:textSize="12sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -1242,7 +1251,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@{week.dates.get(4)}"
-                            android:textColor="@{week.dates.get(0).equals(today) ? @android:color/white : @color/my_gray}" />
+                            android:textColor="@{week.dates.get(4).equals(today) ? @android:color/white : @color/my_gray}"
+                            android:textSize="12sp" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -1354,7 +1364,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="2"
-                        android:background="@{week.courses.get(18).name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border1}"
+                        android:background="@{week.courses.get(18).name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border5}"
                         android:onClick="@{() -> viewModel.click(18)}"
                         android:orientation="vertical">
 
@@ -1495,9 +1505,595 @@
                 </LinearLayout>
             </LinearLayout>
             <!-- 星期六 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="@dimen/layout_weight_date"
+                    android:background="@{week.dates.get(5).equals(today) ? @drawable/textview_round_border4 : @drawable/textview_round_border0}"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="2dp"
+                            android:text="星期六"
+                            android:textColor="@{week.dates.get(5).equals(today) ? @android:color/white : @color/my_gray}"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="2dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{week.dates.get(5)}"
+                            android:textColor="@{week.dates.get(5).equals(today) ? @android:color/white : @color/my_gray}"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="@dimen/layout_weight_two_ketang"
+                    android:background="@{week.courses.get(5).name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border6}"
+                    android:orientation="vertical"
+                    android:onClick="@{() -> viewModel.click(5)}">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="@dimen/layout_weight_course_name"
+                        android:gravity="center|top"
+                        android:orientation="vertical"
+                        android:padding="2dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{week.courses.get(5).name}"
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/course_font_size" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="@dimen/layout_weight_course_classroom"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="2dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{week.courses.get(5).place}"
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/course_font_size" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="@dimen/layout_weight_three_ketang"
+                    android:background="@drawable/textview_round_border0"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="2"
+                        android:onClick="@{() -> viewModel.click(12)}"
+                        android:background="@{week.courses.get(12).name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border6}"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="@dimen/layout_weight_course_name"
+                            android:gravity="center|top"
+                            android:orientation="vertical"
+                            android:padding="2dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{week.courses.get(12).name}"
+                                android:textColor="@android:color/white"
+                                android:textSize="@dimen/course_font_size" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="@dimen/layout_weight_course_classroom"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="2dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{week.courses.get(12).place}"
+                                android:textColor="@android:color/white"
+                                android:textSize="@dimen/course_font_size" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:visibility="@{week.courses.get(12).longCourse ? View.GONE : View.VISIBLE}" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="@dimen/layout_weight_three_ketang"
+                    android:background="@drawable/textview_round_border0"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="2"
+                        android:background="@{week.courses.get(19).name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border6}"
+                        android:onClick="@{() -> viewModel.click(19)}"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="@dimen/layout_weight_course_name"
+                            android:gravity="center|top"
+                            android:orientation="vertical"
+                            android:padding="2dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{week.courses.get(19).name}"
+                                android:textColor="@android:color/white"
+                                android:textSize="@dimen/course_font_size" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="@dimen/layout_weight_course_classroom"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="2dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{week.courses.get(19).place}"
+                                android:textColor="@android:color/white"
+                                android:textSize="@dimen/course_font_size" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:visibility="@{week.courses.get(19).longCourse ? View.GONE : View.VISIBLE}" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="@dimen/layout_weight_two_ketang"
+                    android:background="@{week.courses.get(26).name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border6}"
+                    android:onClick="@{() -> viewModel.click(26)}"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="@dimen/layout_weight_course_name"
+                        android:gravity="center|top"
+                        android:orientation="vertical"
+                        android:padding="2dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{week.courses.get(26).name}"
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/course_font_size" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="@dimen/layout_weight_course_classroom"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="2dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{week.courses.get(26).place}"
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/course_font_size" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="@dimen/layout_weight_three_ketang"
+                    android:background="@drawable/textview_round_border0"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="2"
+                        android:background="@{week.courses.get(33).name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border6}"
+                        android:onClick="@{() -> viewModel.click(33)}"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="@dimen/layout_weight_course_name"
+                            android:gravity="center|top"
+                            android:orientation="vertical"
+                            android:padding="2dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{week.courses.get(33).name}"
+                                android:textColor="@android:color/white"
+                                android:textSize="@dimen/course_font_size" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="@dimen/layout_weight_course_classroom"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="2dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{week.courses.get(33).place}"
+                                android:textColor="@android:color/white"
+                                android:textSize="@dimen/course_font_size" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:visibility="@{week.courses.get(33).longCourse ? View.GONE : View.VISIBLE}" />
+                </LinearLayout>
+            </LinearLayout>
             <!-- 星期天 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="@dimen/layout_weight_date"
+                    android:background="@{week.dates.get(6).equals(today) ? @drawable/textview_round_border4 : @drawable/textview_round_border0}"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="2dp"
+                            android:text="星期天"
+                            android:textColor="@{week.dates.get(6).equals(today) ? @android:color/white : @color/my_gray}"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="2dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{week.dates.get(6)}"
+                            android:textColor="@{week.dates.get(6).equals(today) ? @android:color/white : @color/my_gray}"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="@dimen/layout_weight_two_ketang"
+                    android:background="@{week.courses.get(6).name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border7}"
+                    android:orientation="vertical"
+                    android:onClick="@{() -> viewModel.click(6)}">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="@dimen/layout_weight_course_name"
+                        android:gravity="center|top"
+                        android:orientation="vertical"
+                        android:padding="2dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{week.courses.get(6).name}"
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/course_font_size" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="@dimen/layout_weight_course_classroom"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="2dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{week.courses.get(6).place}"
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/course_font_size" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="@dimen/layout_weight_three_ketang"
+                    android:background="@drawable/textview_round_border0"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="2"
+                        android:onClick="@{() -> viewModel.click(13)}"
+                        android:background="@{week.courses.get(13).name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border7}"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="@dimen/layout_weight_course_name"
+                            android:gravity="center|top"
+                            android:orientation="vertical"
+                            android:padding="2dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{week.courses.get(13).name}"
+                                android:textColor="@android:color/white"
+                                android:textSize="@dimen/course_font_size" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="@dimen/layout_weight_course_classroom"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="2dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{week.courses.get(13).place}"
+                                android:textColor="@android:color/white"
+                                android:textSize="@dimen/course_font_size" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:visibility="@{week.courses.get(13).longCourse ? View.GONE : View.VISIBLE}" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="@dimen/layout_weight_three_ketang"
+                    android:background="@drawable/textview_round_border0"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="2"
+                        android:background="@{week.courses.get(20).name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border7}"
+                        android:onClick="@{() -> viewModel.click(20)}"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="@dimen/layout_weight_course_name"
+                            android:gravity="center|top"
+                            android:orientation="vertical"
+                            android:padding="2dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{week.courses.get(20).name}"
+                                android:textColor="@android:color/white"
+                                android:textSize="@dimen/course_font_size" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="@dimen/layout_weight_course_classroom"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="2dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{week.courses.get(20).place}"
+                                android:textColor="@android:color/white"
+                                android:textSize="@dimen/course_font_size" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:visibility="@{week.courses.get(20).longCourse ? View.GONE : View.VISIBLE}" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="@dimen/layout_weight_two_ketang"
+                    android:background="@{week.courses.get(27).name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border7}"
+                    android:onClick="@{() -> viewModel.click(27)}"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="@dimen/layout_weight_course_name"
+                        android:gravity="center|top"
+                        android:orientation="vertical"
+                        android:padding="2dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{week.courses.get(27).name}"
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/course_font_size" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="@dimen/layout_weight_course_classroom"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="2dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{week.courses.get(27).place}"
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/course_font_size" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="@dimen/layout_weight_three_ketang"
+                    android:background="@drawable/textview_round_border0"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="2"
+                        android:background="@{week.courses.get(34).name == null ? @drawable/textview_round_border0 : @drawable/textview_round_border7}"
+                        android:onClick="@{() -> viewModel.click(34)}"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="@dimen/layout_weight_course_name"
+                            android:gravity="center|top"
+                            android:orientation="vertical"
+                            android:padding="2dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{week.courses.get(34).name}"
+                                android:textColor="@android:color/white"
+                                android:textSize="@dimen/course_font_size" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="@dimen/layout_weight_course_classroom"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="2dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{week.courses.get(34).place}"
+                                android:textColor="@android:color/white"
+                                android:textSize="@dimen/course_font_size" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:visibility="@{week.courses.get(34).longCourse ? View.GONE : View.VISIBLE}" />
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

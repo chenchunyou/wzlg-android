@@ -4,6 +4,6 @@
     <item name="layout_weight_course_name" type="dimen" format="float">1</item>
     <dimen name="layout_weight_two_ketang">4</dimen>
     <dimen name="layout_weight_three_ketang">6</dimen>
-    <dimen name="course_font_size">13sp</dimen>
+    <dimen name="course_font_size">10sp</dimen>
     <dimen name="layout_weight_course_classroom">1</dimen>
 </resources>

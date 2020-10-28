@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.minghao.wzlg.domain.CourseTable;
 import com.minghao.wzlg.domain.Student;
@@ -42,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
                 student = MyUtils.getStudentByInfoJson(json_result);
             }
         }
+
+        // 问候语
+        //MyUtils.updateToast(MainActivity.this, "嗨，" + student.getName() + "同学！", Toast.LENGTH_SHORT);
         viewPager2 = findViewById(R.id.viewPager2);
         // 准备fragments
         fragments = new ArrayList<>();
